@@ -68,7 +68,39 @@ struct MealDetails: Codable {
     let strImageSource: String?
     let strCreativeCommonsConfirmed: String?
     let dateModified: String?
+    
+    // Computed properties to filter ingredients and measures
+    var ingredients: [String] {
+        [
+            strIngredient1, strIngredient2, strIngredient3, strIngredient4,
+            strIngredient5, strIngredient6, strIngredient7, strIngredient8,
+            strIngredient9, strIngredient10, strIngredient11, strIngredient12,
+            strIngredient13, strIngredient14, strIngredient15, strIngredient16,
+            strIngredient17, strIngredient18, strIngredient19, strIngredient20
+        ].compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+    }
+    
+    var measures: [String] {
+        [
+            strMeasure1, strMeasure2, strMeasure3, strMeasure4,
+            strMeasure5, strMeasure6, strMeasure7, strMeasure8,
+            strMeasure9, strMeasure10, strMeasure11, strMeasure12,
+            strMeasure13, strMeasure14, strMeasure15, strMeasure16,
+            strMeasure17, strMeasure18, strMeasure19, strMeasure20
+        ].compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+    }
+    
+    // Computed property to convert strTags into an array
+    var tags: [String] {
+        strTags?
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        ?? []
+    }
 }
+
 
 extension MealsDetailResponse {
     static var MOCK_DETAILS = MealsDetailResponse(
@@ -83,7 +115,7 @@ extension MealsDetailResponse {
                 Cut the meat into strips. Heat oil in a pan and fry the strips for 6 minutes until it's ready. Bake the fries until golden brown in a deep fryer. When ready transfer to a backing dish. Make sure the fries are spread over the whole dish. Cover the fries with a new layer of meat and spread evenly. Add a layer of cheese over the meat. You can also use grated cheese. When done put in the oven for a few minutes until the cheese is melted. Chop the lettuce, tomato and cucumber in small pieces and mix together for a basic salad. As extra you can add olives, jalapenos, and a red onion. Divide the salad over the dish and serve with garlic sauce and hot sauce.
                 """,
                 strMealThumb: "https://www.themealdb.com/images/media/meals/sxysrt1468240488.jpg",
-                strTags: "Snack",
+                strTags: "Cake,Baking,Desert,Sweet,Alcoholic,Calorific",
                 strYoutube: "https://www.youtube.com/watch?v=UIcuiU1kV8I",
                 strIngredient1: "Fries",
                 strIngredient2: "Doner Meat",
@@ -132,5 +164,5 @@ extension MealsDetailResponse {
             )
         ]
     )
-
+    
 }
