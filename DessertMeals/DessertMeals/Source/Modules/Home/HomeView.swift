@@ -62,8 +62,9 @@ struct HomeView: View {
                     DMButton(
                         buttonText: "Let's Cook",
                         buttonStyle: .primary) {
-                            print(meal.idMeal)
+                            router.navigate(to: .details(id: meal.idMeal))
                         }
+                        .buttonStyle(PlainButtonStyle())
                 }
                 
                 Spacer()

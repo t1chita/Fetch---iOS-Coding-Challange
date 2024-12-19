@@ -17,7 +17,7 @@ struct DessertMealsApp: App {
                 .navigationDestination(for: NavigationManager.Destination.self) { destination in
                     switch destination {
                     case .details(let id):
-                        Text("ID")
+                        DetailsView(detailVM: DetailsViewModel(mealId: id))
                     }
                 }
             }
