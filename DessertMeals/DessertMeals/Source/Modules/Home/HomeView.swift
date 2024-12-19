@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var homeVM: HomeViewModel
     @EnvironmentObject var router: NavigationManager
+    private let cacheSize = 1024 * 1024 * 512 * 2
+
     var body: some View {
         ZStack {
             Color.black87
@@ -17,6 +19,9 @@ struct HomeView: View {
             Group {
                 if !homeVM.isLoading {
                     content()
+                        .onAppear {
+                            configureCache()
+                        }
                 } else {
                     ProgressView {
                         Text("Meals Are Loading")
@@ -45,19 +50,8 @@ struct HomeView: View {
         //TODO: - Add Async Images Struct
         List(homeVM.filteredMeals) { meal in
             HStack(alignment: .top, spacing: Constants.mediumSpacing) {
-                // Meal Image
-                AsyncImage(url: URL(string: meal.strMealThumb)!) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: ImageSize.height)
-                        .cornerRadius(20, corners: [.topRight, .bottomRight])
-                    
-                } placeholder: {
-                    ProgressView()
-                        .frame(height: ImageSize.height)
-                        .frame(width: ImageSize.height)
-                }
+                MealThumbnailImage(url:  URL(string: meal.strMealThumb)!)
+
                 VStackLayout(alignment: .leading) {
                     Text(meal.strMeal)
                         .font(.headline)
@@ -83,6 +77,10 @@ struct HomeView: View {
         .listStyle(PlainListStyle())
         .searchable(text: $homeVM.searchQuery, placement: .automatic, prompt: "Search Meal")
     }
+    
+    private func configureCache() {
+         URLCache.shared.memoryCapacity = cacheSize
+     }
 }
 
 extension HomeView {
