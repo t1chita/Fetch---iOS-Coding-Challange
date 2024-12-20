@@ -6,9 +6,13 @@
 ---
 ## ScreenShots
 **HomeView**
+
   ![Screenshot 2024-12-20 at 12 57 28](https://github.com/user-attachments/assets/57a447fb-c512-4018-b6c1-0f31a7118112)
+  
 **DetailsView**
+
   ![Screenshot 2024-12-20 at 12 58 42](https://github.com/user-attachments/assets/3decc05d-2ea7-4c1f-a3c9-30dc26fa12f1)
+  
 ---
 ## Features
 🍰 - Fetch and display a list of dessert meals sorted alphabetically.
