@@ -4,6 +4,10 @@
 🎉 Fetch is a native iOS app that allows users to browse recipes in the Dessert category using the [TheMealDB API](https://themealdb.com/api.php). Users can view a list of dessert meals and access detailed information about each meal, including its name, instructions, ingredients, and measurements. 🎉
 
 ---
+
+Requirements PDF: [Requirements](https://fetch-hiring.s3.amazonaws.com/iOS+coding+exercise.pdf)
+
+---
 ## ScreenShots
 **HomeView**
 
